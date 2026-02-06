@@ -11,6 +11,9 @@ let number1Input, number2Input, resultOutput;
 // variabelen voor de buttons
 let addButton, subtractButton, multiplyButton, divideButton, buttons;
 
+// variabele voor error div
+let errorDiv;
+
 //#endregion
 
 //#region main script
@@ -36,6 +39,10 @@ function bindElements() {
     divideButton = document.getElementById("divide");
     // alle vier de buttons samen in één array opslaan
     buttons = [addButton, subtractButton, multiplyButton, divideButton];
+    // alternatief
+    // buttons = document.querySelectorAll("button");
+
+    errorDiv = document.getElementById("errors");
 }
 
 // function om eventlisteners toe te voegen aan HTML elementen
@@ -43,6 +50,8 @@ function addEvents() {
     // loop die alle buttons uit de buttons array een click event toekent
     buttons.forEach(button => {
         button.addEventListener("click", function (e) {
+            // resetErrors uitvoeren om eventuele boodschappen te wissen
+            resetErrors();
             // controleren of input 'valid' is
             if (validate(number1Input.value) === true
                 && validate(number2Input.value) === true) {
@@ -88,22 +97,42 @@ function calculate(operator) {
 // dan is dit 'fout'
 // input is de data die moet gecontroleerd worden
 function validate(input) {
-    if (input === "") return false;
+    if (input === "" || isNaN(input)) return false;
     return true;
 }
 
 // function die beide inputs apart nog eens controleert
 // en op basis van de specifieke fouten, specifieke meldingen geeft
 function showErrors() {
-    console.log(validate(number1Input.value));
     // error voor eerste input
     if (validate(number1Input.value) === false) {
-        alert("Getal 1 is verkeerd");
+        // nieuwe <p> aanmaken voor foutboodschap
+        let error1 = document.createElement("p");
+        // tekst in <p> plaatsen
+        error1.textContent = "Getal 1 is verkeerd";
+        // error1 <p> toevoegen aan errorDiv
+        errorDiv.append(error1);
+        // achtergrondkleur van input geel maken
+        number1Input.style.backgroundColor = "yellow";
     }
     // error voor tweede input
     if (validate(number2Input.value) === false) {
-        alert("Getal 2 is verkeerd");
+        // nieuwe <p> aanmaken voor foutboodschap
+        let error2 = document.createElement("p");
+        // tekst in <p> plaatsen
+        error2.textContent = "Getal 2 is verkeerd";
+        // error1 <p> toevoegen aan errorDiv
+        errorDiv.append(error2);
+        // achtergrondkleur van input geel maken
+        number2Input.style.backgroundColor = "yellow";
     }
+}
+
+// function om errors te resetten
+function resetErrors() {
+    errorDiv.textContent = "";
+    number1Input.style.backgroundColor = "";
+    number2Input.style.backgroundColor = "";
 }
 
 //#endregion
