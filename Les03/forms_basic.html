@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="https://jkorpela.fi/cgi-bin/echo.cgi" method="get">
+
+        <label for="name">Name</label><br>
+        <input type="text" name="name" id="name"><br>
+
+        <label for="email">Email</label><br>
+        <!-- als je iets intypt bij email wordt dit wel al gecontroleerd op valide adres -->
+        <input type="email" name="email" id="email"><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" name="password" id="password"><br>
+
+        <label for="age">Age</label><br>
+        <input type="number" name="age" id="age"><br>
+
+        <label for="gender">Gender</label><br>
+        <select name="gender" id="gender">
+            <option value="" disabled selected hidden>Kies geslacht</option>
+            <option value="Male">Man</option>
+            <option value="Female">Vrouw</option>
+            <option value="Non-binary">Non-binary</option>
+        </select><br>
+
+        <label for="skill">Skill level</label><br>
+        <span id="skillNumber">3</span><br>   
+        <input type="range" name="skill" id="skill"><br>
+
+        <label for="knowledge">Knowledge</label><br>
+        <input type="checkbox" name="knowledge" id="javascript" value="javascript">
+        <label for="javascript">javascript</label><br>
+        <input type="checkbox" name="knowledge" id="html" value="html">
+        <label for="html">html</label><br>
+        <input type="checkbox" name="knowledge" id="csharp" value="csharp">
+        <label for="csharp">C#</label><br>
+
+        <span>Applying for</span><br>
+        <input type="radio" name="position" id="front-end" value="front-end">
+        <label for="front-end">front-end</label><br>
+        <input type="radio" name="position" id="back-end" value="back-end">
+        <label for="back-end">back-end</label><br>
+        <input type="radio" name="position" id="both" value="both">
+        <label for="both">both</label><br>
+
+        <label for="date">Available on</label><br>
+        <input type="date" name="date" id="date"><br>
+
+        <label for="time">From...</label><br>
+        <input type="time" name="time" id="time"><br>
+
+        <label for="extra">Additional information</label><br>
+        <textarea name="extra" id="extra" cols="30" rows="10"></textarea><br>
+        
+        <!-- <button>Send</button> -->
+        <input type="submit" value="Send">
+
+    </form>
+
+    
+
+</body>
+</html>
