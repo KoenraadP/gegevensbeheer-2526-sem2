@@ -8,7 +8,8 @@
 </head>
 <body>
 
-    <form action="https://jkorpela.fi/cgi-bin/echo.cgi" method="get">
+    <!-- <form action="https://jkorpela.fi/cgi-bin/echo.cgi" method="get"> -->
+    <form action="submitted.html" method="get">
 
         <label for="name">Name</label><br>
         <input type="text" name="name" id="name"><br>
@@ -32,7 +33,7 @@
         </select><br>
 
         <label for="skill">Skill level</label><br>
-        <span id="skillNumber">3</span><br>   
+        <span id="skill-number">3</span><br>   
         <input type="range" name="skill" id="skill"><br>
 
         <label for="knowledge">Knowledge</label><br>
@@ -65,7 +66,7 @@
 
     </form>
 
-    
+    <script src="scripts/range.js"></script>
 
 </body>
 </html>
