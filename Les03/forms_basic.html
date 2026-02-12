@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 
     <!-- <form action="https://jkorpela.fi/cgi-bin/echo.cgi" method="get"> -->
     <form action="submitted.html" method="get">
 
         <label for="name">Name</label><br>
-        <input type="text" name="name" id="name"><br>
+        <!-- required: verplicht in te vullen -->
+        <!-- minlength en maxlength voor tekst -->
+        <input required minlength="2" type="text" name="name" id="name"><br>
 
         <label for="email">Email</label><br>
         <!-- als je iets intypt bij email wordt dit wel al gecontroleerd op valide adres -->
         <input type="email" name="email" id="email"><br>
 
         <label for="password">Password:</label><br>
-        <input type="password" name="password" id="password"><br>
+        <input pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[,;?:!]).{4,}$"
+            title="minstens vier karakters, één hoofdletter, één cijfer, één kleine letter, één speciaal teken"
+            type="password" name="password" id="password"><br>
 
         <label for="age">Age</label><br>
-        <input type="number" name="age" id="age"><br>
+        <input min="18" type="number" name="age" id="age"><br>
 
         <label for="gender">Gender</label><br>
         <select name="gender" id="gender">
@@ -33,8 +39,10 @@
         </select><br>
 
         <label for="skill">Skill level</label><br>
-        <span id="skill-number">3</span><br>   
-        <input type="range" name="skill" id="skill"><br>
+        <span id="skill-number">3</span><br>
+        <!-- min: linkerzijde van range  -->
+        <!-- max: rechterzijde van range -->
+        <input min="1" max="5" type="range" name="skill" id="skill"><br>
 
         <label for="knowledge">Knowledge</label><br>
         <input type="checkbox" name="knowledge" id="javascript" value="javascript">
@@ -53,14 +61,14 @@
         <label for="both">both</label><br>
 
         <label for="date">Available on</label><br>
-        <input type="date" name="date" id="date"><br>
+        <input min="2026-02-13" type="date" name="date" id="date"><br>
 
         <label for="time">From...</label><br>
-        <input type="time" name="time" id="time"><br>
+        <input min="09:00" max="16:00" type="time" name="time" id="time"><br>
 
         <label for="extra">Additional information</label><br>
         <textarea name="extra" id="extra" cols="30" rows="10"></textarea><br>
-        
+
         <!-- <button>Send</button> -->
         <input type="submit" value="Send">
 
@@ -69,4 +77,5 @@
     <script src="scripts/range.js"></script>
 
 </body>
+
 </html>
