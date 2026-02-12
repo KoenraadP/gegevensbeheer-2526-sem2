@@ -19,18 +19,19 @@
 
     <h1>Create a user account</h1>
 
-    <form action="" id="form">
+    <!-- novalidate schakelt de standaard foutboodschappen van de browser uit -->
+    <form novalidate action="" id="form">
 
         <div>
             <label for="username">Username</label>
-            <input type="text" name="username" id="username">
+            <input required type="text" name="username" id="username">
         </div>
 
         <br>
 
         <div>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+            <input required type="password" name="password" id="password">
         </div>
 
         <br>
@@ -42,6 +43,8 @@
     <br>
 
     <div id="errors"></div>
+
+    <script src="scripts/validate.js"></script>
     
 </body>
 </html>
