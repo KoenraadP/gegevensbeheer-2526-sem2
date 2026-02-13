@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS validation</title>
+    <style>
+        #username{
+            margin-left: 10px;
+        }
+        #password{
+            margin-left: 14px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/validation.css">
+</head>
+<body>
+
+    <h1>Create a user account</h1>
+
+    <!-- novalidate schakelt de standaard foutboodschappen van de browser uit -->
+    <form novalidate action="" id="form">
+
+        <div>
+            <label for="username">Username</label>
+            <input required type="text" name="username" id="username">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="password">Password</label>
+            <input required type="password" name="password" id="password">
+        </div>
+
+        <br>
+
+        <input type="submit" value="Register">
+
+    </form>
+
+    <br>
+
+    <div id="errors"></div>
+
+    <script src="scripts/validate.js"></script>
+    
+</body>
+</html>
