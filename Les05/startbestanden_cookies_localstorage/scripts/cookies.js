@@ -1,5 +1,10 @@
 "use strict";
 
+// controleren of ik al ingelogd ben via de cookie
+if (getCookie("loggedIn") === "true") {
+    location.assign("success.html");
+}
+
 // juiste login gegevens opslaan
 let correctUser = "jeff";
 let correctPassword = "creo";
@@ -18,8 +23,9 @@ form.addEventListener("submit", function (e) {
     let password = passwordInput.value;
     // user en password checken met function
     if (checkLogin(user, password) === true) {
-        // cookie aanmaken --> key (naam) en value (waarde) in string met '=' er tussen
-        document.cookie = "loggedIn=true";
+        // cookies aanmaken --> key (naam) en value (waarde) in string met '=' er tussen
+        document.cookie = "loggedIn=true;expires=" + expirationDate(30);
+        document.cookie = "user=" + user + ";expires=" + expirationDate(30); 
         // naar volgende pagina gaan
         location.assign("success.html");
     }
@@ -46,9 +52,12 @@ console.log(document.cookie);
 // loggedIn=true; school=Creo; vak=Gegevensbeheer
 
 console.log(getCookie("school"));
+console.log(getCookie2("school"));
 
 // function die voor een specifieke cookie de waarde als return geeft
 function getCookie(cookieName) {
+    // variabele om uiteindelijk resultaat in op te slaan
+    let cookieValue;
     // alle cookies apart in array opslaan
     let allCookies = document.cookie.split("; ");
     // alle cookies overlopen en zoeken naar een match voor cookieName
@@ -58,8 +67,24 @@ function getCookie(cookieName) {
         console.log(cookiePair);
         // eerste element cookiePair is de naam, deze vergelijken met cookieName
         if (cookiePair[0] === cookieName) {
-            // de waarde van de cookie als return
-            return cookiePair[1];
+            // de waarde van de cookie opslaan in variabele
+            cookieValue = cookiePair[1];
         }
     });
+    return cookieValue;
+}
+
+function getCookie2(name) {
+    return document.cookie.split('; ').find(c => c.startsWith(name + '='))?.split('=')[1];
+}
+
+// function die een datum aanmaakt in de toekomst
+function expirationDate(days) {
+    // new Date() --> dit moment (datum + uur)
+    let newDate = new Date();
+    // huidige dag van de maand opslaan
+    let currentDay = newDate.getDate(); // bijvoorbeeld 26 als het nu 26/02 is
+    newDate.setDate(currentDay + days);
+    // nieuwe datum als resultaat van de function
+    return newDate;
 }
