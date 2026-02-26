@@ -18,6 +18,9 @@ form.addEventListener("submit", function (e) {
     let password = passwordInput.value;
     // user en password checken met function
     if (checkLogin(user, password) === true) {
+        // cookie aanmaken --> key (naam) en value (waarde) in string met '=' er tussen
+        document.cookie = "loggedIn=true";
+        // naar volgende pagina gaan
         location.assign("success.html");
     }
 })
@@ -28,4 +31,35 @@ function checkLogin(user, password) {
         return true;
     }
     return false;
+}
+
+// extra code voor testen van cookies
+
+// extra cookies aanmaken
+document.cookie = "school=Creo";
+document.cookie = "vak=Gegevensbeheer";
+
+// alle cookies tonen in console
+console.log(document.cookie);
+
+// console.log(getCookie("school")) --> "Creo"
+// loggedIn=true; school=Creo; vak=Gegevensbeheer
+
+console.log(getCookie("school"));
+
+// function die voor een specifieke cookie de waarde als return geeft
+function getCookie(cookieName) {
+    // alle cookies apart in array opslaan
+    let allCookies = document.cookie.split("; ");
+    // alle cookies overlopen en zoeken naar een match voor cookieName
+    allCookies.forEach(element => {
+        // variabele met daarin de twee stukjes van de cookie apart
+        let cookiePair = element.split("=");
+        console.log(cookiePair);
+        // eerste element cookiePair is de naam, deze vergelijken met cookieName
+        if (cookiePair[0] === cookieName) {
+            // de waarde van de cookie als return
+            return cookiePair[1];
+        }
+    });
 }
